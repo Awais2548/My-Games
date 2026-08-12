@@ -8,38 +8,46 @@
 
 <style>
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: Arial, sans-serif;
-    background: #090a0f;
-    color: white;
+    background:
+        radial-gradient(circle at top left, #24143f 0%, transparent 35%),
+        radial-gradient(circle at top right, #102a46 0%, transparent 30%),
+        #08090d;
+    color: #fff;
+    min-height: 100vh;
 }
 
 header {
-    padding: 25px 7%;
-    border-bottom: 1px solid #242631;
+    width: 100%;
+    padding: 22px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(12px);
 }
 
 .logo {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 800;
+    letter-spacing: -1px;
 }
 
 .logo span {
-    color: #7c5cff;
+    color: #9b7cff;
 }
 
 nav a {
-    color: #aaa;
+    color: #a9abb8;
     text-decoration: none;
-    margin-left: 25px;
+    margin-left: 28px;
+    font-size: 14px;
 }
 
 nav a:hover {
@@ -47,17 +55,26 @@ nav a:hover {
 }
 
 .hero {
-    padding: 55px 7% 35px;
+    padding: 75px 7% 45px;
+}
+
+.hero small {
+    color: #9b7cff;
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
 .hero h1 {
-    font-size: clamp(40px, 6vw, 70px);
-    margin-bottom: 12px;
+    font-size: clamp(45px, 7vw, 78px);
+    margin: 12px 0;
+    letter-spacing: -3px;
 }
 
 .hero p {
-    color: #9b9da8;
+    color: #9295a3;
     font-size: 17px;
+    max-width: 550px;
+    line-height: 1.6;
 }
 
 .search-area {
@@ -67,84 +84,111 @@ nav a:hover {
 .search {
     width: 100%;
     max-width: 650px;
-    padding: 16px 20px;
-    border-radius: 12px;
+    padding: 17px 20px;
+    border-radius: 14px;
     border: 1px solid #292c38;
-    background: #12141b;
+    background: rgba(18,20,28,0.85);
     color: white;
-    font-size: 16px;
     outline: none;
+    font-size: 15px;
 }
 
 .search:focus {
-    border-color: #7c5cff;
+    border-color: #8c70ff;
+    box-shadow: 0 0 25px rgba(140,112,255,0.12);
+}
+
+.categories {
+    padding: 0 7% 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category {
+    border: 1px solid #292c38;
+    background: #11131a;
+    color: #a8aab6;
+    padding: 9px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.category:hover,
+.category.active {
+    background: #8c70ff;
+    color: white;
+    border-color: #8c70ff;
 }
 
 .games {
-    padding: 10px 7% 60px;
+    padding: 10px 7% 70px;
 }
 
 .games-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 22px;
+    gap: 24px;
 }
 
 .card {
-    background: #12141b;
-    border: 1px solid #252833;
-    border-radius: 16px;
+    background: rgba(18,20,27,0.9);
+    border: 1px solid #242732;
+    border-radius: 18px;
     overflow: hidden;
-    transition: 0.25s ease;
+    transition: 0.3s ease;
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    border-color: #7c5cff;
+    transform: translateY(-7px);
+    border-color: #8066ff;
+    box-shadow: 0 15px 45px rgba(0,0,0,0.35);
 }
 
 .card-image {
-    height: 270px;
     width: 100%;
+    height: 290px;
     object-fit: cover;
     display: block;
 }
 
 .card-content {
-    padding: 17px;
+    padding: 18px;
 }
 
 .card h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: 19px;
+    margin-bottom: 13px;
 }
 
 .info {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
-    color: #9b9da8;
-    font-size: 14px;
+    color: #858896;
+    font-size: 13px;
 }
 
 .badge {
     display: inline-block;
-    margin-top: 14px;
+    margin-top: 15px;
     padding: 6px 10px;
     border-radius: 7px;
-    background: #1e1a35;
+    background: #211b3b;
     color: #a993ff;
-    font-size: 13px;
+    font-size: 12px;
 }
 
 footer {
-    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.08);
     padding: 30px;
-    border-top: 1px solid #242631;
-    color: #777;
+    text-align: center;
+    color: #686b77;
+    font-size: 13px;
 }
 
 @media (max-width: 600px) {
+
     header {
         padding: 20px;
     }
@@ -155,17 +199,22 @@ footer {
 
     .hero,
     .search-area,
+    .categories,
     .games {
         padding-left: 20px;
         padding-right: 20px;
     }
 
     .hero {
-        padding-top: 40px;
+        padding-top: 50px;
+    }
+
+    .hero h1 {
+        letter-spacing: -2px;
     }
 
     .card-image {
-        height: 240px;
+        height: 260px;
     }
 }
 </style>
@@ -174,132 +223,319 @@ footer {
 <body>
 
 <header>
-    <div class="logo">My <span>Games</span></div>
+
+    <div class="logo">
+        My <span>Games</span>
+    </div>
 
     <nav>
         <a href="#">Home</a>
         <a href="#games">Games</a>
     </nav>
+
 </header>
 
+
 <section class="hero">
+
+    <small>MY PERSONAL COLLECTION</small>
+
     <h1>My Games</h1>
-    <p>My personal collection of PC games.</p>
+
+    <p>
+        A simple collection of my favorite PC games.
+        Browse, search and explore the collection.
+    </p>
+
 </section>
 
+
 <section class="search-area">
+
     <input
         type="text"
         id="search"
         class="search"
         placeholder="Search games..."
-        onkeyup="searchGames()"
+        onkeyup="filterGames()"
     >
+
 </section>
+
+
+<section class="categories">
+
+    <button class="category active" onclick="filterCategory('all', this)">
+        All
+    </button>
+
+    <button class="category" onclick="filterCategory('action', this)">
+        Action
+    </button>
+
+    <button class="category" onclick="filterCategory('racing', this)">
+        Racing
+    </button>
+
+    <button class="category" onclick="filterCategory('fighting', this)">
+        Fighting
+    </button>
+
+    <button class="category" onclick="filterCategory('horror', this)">
+        Horror
+    </button>
+
+    <button class="category" onclick="filterCategory('shooter', this)">
+        Shooter
+    </button>
+
+</section>
+
 
 <section class="games" id="games">
 
-    <div class="games-grid" id="gameList">
+<div class="games-grid" id="gameList">
 
-        <div class="card">
-            <img
-                class="card-image"
-                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
-                alt="Gaming"
-            >
 
-            <div class="card-content">
-                <h2>GTA V</h2>
+    <div class="card" data-category="action">
 
-                <div class="info">
-                    <span>Action</span>
-                    <span>~110 GB</span>
-                </div>
+        <img class="card-image"
+        src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80">
 
-                <span class="badge">PC</span>
+        <div class="card-content">
+
+            <h2>GTA V</h2>
+
+            <div class="info">
+                <span>Action</span>
+                <span>~110 GB</span>
             </div>
-        </div>
 
-        <div class="card">
-            <img
-                class="card-image"
-                src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
-                alt="Gaming"
-            >
+            <span class="badge">PC</span>
 
-            <div class="card-content">
-                <h2>Far Cry 4</h2>
-
-                <div class="info">
-                    <span>Action</span>
-                    <span>~30 GB</span>
-                </div>
-
-                <span class="badge">PC</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <img
-                class="card-image"
-                src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=800&q=80"
-                alt="Gaming"
-            >
-
-            <div class="card-content">
-                <h2>Assassin's Creed</h2>
-
-                <div class="info">
-                    <span>Adventure</span>
-                    <span>~40 GB</span>
-                </div>
-
-                <span class="badge">PC</span>
-            </div>
-        </div>
-
-        <div class="card">
-            <img
-                class="card-image"
-                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80"
-                alt="Gaming"
-            >
-
-            <div class="card-content">
-                <h2>Resident Evil</h2>
-
-                <div class="info">
-                    <span>Horror</span>
-                    <span>~25 GB</span>
-                </div>
-
-                <span class="badge">PC</span>
-            </div>
         </div>
 
     </div>
 
+
+    <div class="card" data-category="action">
+
+        <img class="card-image"
+        src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+
+            <h2>Red Dead Redemption 2</h2>
+
+            <div class="info">
+                <span>Adventure</span>
+                <span>~150 GB</span>
+            </div>
+
+            <span class="badge">PC</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card" data-category="action">
+
+        <img class="card-image"
+        src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+
+            <h2>Watch Dogs 2</h2>
+
+            <div class="info">
+                <span>Action</span>
+                <span>~27 GB</span>
+            </div>
+
+            <span class="badge">PC</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card" data-category="fighting">
+
+        <img class="card-image"
+        src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+
+            <h2>Tekken 8</h2>
+
+            <div class="info">
+                <span>Fighting</span>
+                <span>~100 GB</span>
+            </div>
+
+            <span class="badge">PC</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card" data-category="horror">
+
+        <img class="card-image"
+        src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+
+            <h2>Outlast</h2>
+
+            <div class="info">
+                <span>Horror</span>
+                <span>~5 GB</span>
+            </div>
+
+            <span class="badge">PC</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card" data-category="racing">
+
+        <img class="card-image"
+        src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+
+            <h2>NFS Heat</h2>
+
+            <div class="info">
+                <span>Racing</span>
+                <span>~50 GB</span>
+            </div>
+
+            <span class="badge">PC</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card" data-category="shooter">
+
+        <img class="card-image"
+        src="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+
+            <h2>VALORANT</h2>
+
+            <div class="info">
+                <span>Shooter</span>
+                <span>~30 GB</span>
+            </div>
+
+            <span class="badge">PC</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="card" data-category="action">
+
+        <img class="card-image"
+        src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=800&q=80">
+
+        <div class="card-content">
+
+            <h2>Sekiro</h2>
+
+            <div class="info">
+                <span>Action</span>
+                <span>~25 GB</span>
+            </div>
+
+            <span class="badge">PC</span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
 </section>
 
+
 <footer>
-    My Games • Personal Gaming Collection
+    My Games • Personal PC Gaming Collection
 </footer>
 
+
 <script>
-function searchGames() {
-    const input = document.getElementById("search").value.toLowerCase();
-    const cards = document.querySelectorAll(".card");
+
+let currentCategory = "all";
+
+
+function filterGames() {
+
+    const search =
+        document.getElementById("search")
+        .value
+        .toLowerCase();
+
+    const cards =
+        document.querySelectorAll(".card");
+
 
     cards.forEach(card => {
-        const name = card.querySelector("h2").textContent.toLowerCase();
 
-        if (name.includes(input)) {
-            card.style.display = "";
-        } else {
-            card.style.display = "none";
-        }
+        const name =
+            card.querySelector("h2")
+            .textContent
+            .toLowerCase();
+
+        const category =
+            card.dataset.category;
+
+
+        const matchesSearch =
+            name.includes(search);
+
+        const matchesCategory =
+            currentCategory === "all" ||
+            category === currentCategory;
+
+
+        card.style.display =
+            matchesSearch && matchesCategory
+            ? ""
+            : "none";
+
     });
+
 }
+
+
+function filterCategory(category, button) {
+
+    currentCategory = category;
+
+    document
+        .querySelectorAll(".category")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+    filterGames();
+
+}
+
 </script>
 
 </body>
