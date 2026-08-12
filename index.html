@@ -1,3 +1,6 @@
+Bilkul. **Purana poora code delete karke ye complete code paste karo.** Isme tumhari batayi hui changes hain: stats remove, GB/platform remove, top search icon, animated search, clickable games, game details screen, back button aur smooth animations.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,6 +26,10 @@
     --border:rgba(255,255,255,.09);
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:Arial,Helvetica,sans-serif;
     background:
@@ -33,15 +40,17 @@ body{
     min-height:100vh;
 }
 
+/* ================= HEADER ================= */
+
 header{
     position:sticky;
     top:0;
-    z-index:20;
-    padding:20px 7%;
+    z-index:100;
+    padding:18px 7%;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background:rgba(7,7,11,.75);
+    background:rgba(7,7,11,.78);
     backdrop-filter:blur(18px);
     border-bottom:1px solid var(--border);
 }
@@ -56,21 +65,105 @@ header{
     color:var(--purple);
 }
 
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:20px;
+}
+
 nav a{
     color:#aaaab5;
     text-decoration:none;
     margin-left:28px;
     font-size:14px;
-    transition:.2s;
+    transition:.25s;
 }
 
 nav a:hover{
     color:white;
 }
 
+/* SEARCH ICON */
+
+.search-wrapper{
+    position:relative;
+    display:flex;
+    align-items:center;
+}
+
+.search-icon{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background:#111119;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+.search-icon:hover{
+    background:var(--purple);
+    border-color:var(--purple);
+    transform:scale(1.06);
+}
+
+.search-box{
+    position:absolute;
+    right:0;
+    top:52px;
+    width:0;
+    opacity:0;
+    overflow:hidden;
+    transition:
+        width .4s cubic-bezier(.4,0,.2,1),
+        opacity .25s ease;
+}
+
+.search-box.open{
+    width:300px;
+    opacity:1;
+}
+
+.search{
+    width:100%;
+    padding:15px 18px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    background:#111119;
+    color:white;
+    outline:none;
+    font-size:14px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.search:focus{
+    border-color:var(--purple);
+    box-shadow:0 0 30px rgba(139,92,246,.15);
+}
+
+.close-search{
+    position:absolute;
+    right:10px;
+    top:50%;
+    transform:translateY(-50%);
+    background:none;
+    border:0;
+    color:#888;
+    cursor:pointer;
+    font-size:18px;
+}
+
+/* ================= HERO ================= */
+
 .hero{
-    padding:80px 7% 40px;
+    padding:80px 7% 50px;
     max-width:1000px;
+    animation:fadeUp .7s ease both;
 }
 
 .hero-label{
@@ -100,58 +193,16 @@ nav a:hover{
     line-height:1.7;
 }
 
-.stats{
-    display:flex;
-    gap:14px;
-    padding:0 7% 35px;
-    flex-wrap:wrap;
-}
-
-.stat{
-    background:rgba(255,255,255,.035);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:14px 20px;
-    min-width:120px;
-}
-
-.stat strong{
-    display:block;
-    font-size:20px;
-}
-
-.stat span{
-    color:var(--muted);
-    font-size:12px;
-}
+/* ================= CONTROLS ================= */
 
 .controls{
     padding:0 7% 35px;
-}
-
-.search{
-    width:100%;
-    max-width:700px;
-    padding:17px 20px;
-    border-radius:15px;
-    border:1px solid var(--border);
-    background:#111119;
-    color:white;
-    outline:none;
-    font-size:15px;
-    transition:.25s;
-}
-
-.search:focus{
-    border-color:var(--purple);
-    box-shadow:0 0 30px rgba(139,92,246,.13);
 }
 
 .categories{
     display:flex;
     gap:9px;
     flex-wrap:wrap;
-    margin-top:15px;
 }
 
 .category{
@@ -169,7 +220,10 @@ nav a:hover{
     background:linear-gradient(135deg,var(--purple),#6d5dfc);
     color:white;
     border-color:transparent;
+    transform:translateY(-2px);
 }
+
+/* ================= SECTION ================= */
 
 .section{
     padding:15px 7% 70px;
@@ -191,6 +245,8 @@ nav a:hover{
     font-size:13px;
 }
 
+/* ================= FEATURED ================= */
+
 .featured{
     display:grid;
     grid-template-columns:repeat(2,1fr);
@@ -206,18 +262,25 @@ nav a:hover{
     border:1px solid var(--border);
     background-size:cover;
     background-position:center;
-    transition:.3s;
+    cursor:pointer;
+    transition:.35s;
 }
 
 .feature:hover{
-    transform:translateY(-5px);
+    transform:translateY(-6px) scale(1.01);
+    border-color:rgba(139,92,246,.6);
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
 
 .feature::after{
     content:"";
     position:absolute;
     inset:0;
-    background:linear-gradient(0deg,rgba(0,0,0,.9),rgba(0,0,0,.05));
+    background:linear-gradient(
+        0deg,
+        rgba(0,0,0,.9),
+        rgba(0,0,0,.05)
+    );
 }
 
 .feature-content{
@@ -236,6 +299,8 @@ nav a:hover{
     margin-top:5px;
 }
 
+/* ================= GAME GRID ================= */
+
 .games-grid{
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(210px,1fr));
@@ -247,11 +312,13 @@ nav a:hover{
     border:1px solid var(--border);
     border-radius:18px;
     overflow:hidden;
-    transition:.3s;
+    transition:.35s;
+    cursor:pointer;
+    animation:cardIn .5s ease both;
 }
 
 .card:hover{
-    transform:translateY(-7px);
+    transform:translateY(-8px);
     border-color:rgba(139,92,246,.65);
     box-shadow:0 20px 50px rgba(0,0,0,.4);
 }
@@ -261,6 +328,11 @@ nav a:hover{
     height:275px;
     object-fit:cover;
     display:block;
+    transition:.4s;
+}
+
+.card:hover .cover{
+    transform:scale(1.04);
 }
 
 .card-content{
@@ -269,25 +341,107 @@ nav a:hover{
 
 .card h3{
     font-size:17px;
-    margin-bottom:12px;
+    margin-bottom:7px;
 }
 
-.details{
-    display:flex;
-    justify-content:space-between;
-    color:#858592;
+.game-genre{
+    color:#8f8f9c;
     font-size:12px;
 }
 
-.badge{
-    display:inline-block;
-    margin-top:13px;
-    padding:6px 9px;
-    border-radius:7px;
-    background:rgba(139,92,246,.13);
-    color:#b9a5ff;
-    font-size:11px;
+/* ================= DETAILS OVERLAY ================= */
+
+.game-details{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    background:rgba(4,4,8,.88);
+    backdrop-filter:blur(14px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:25px;
+    opacity:0;
+    visibility:hidden;
+    transition:.35s ease;
 }
+
+.game-details.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.details-box{
+    width:min(900px,100%);
+    max-height:90vh;
+    overflow:auto;
+    background:linear-gradient(145deg,#15151f,#0c0c12);
+    border:1px solid var(--border);
+    border-radius:24px;
+    box-shadow:0 30px 100px rgba(0,0,0,.6);
+    transform:translateY(35px) scale(.96);
+    transition:.4s cubic-bezier(.2,.8,.2,1);
+}
+
+.game-details.show .details-box{
+    transform:translateY(0) scale(1);
+}
+
+.details-image{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    display:block;
+}
+
+.details-content{
+    padding:28px;
+}
+
+.details-content h2{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.details-tag{
+    display:inline-block;
+    padding:7px 11px;
+    border-radius:8px;
+    background:rgba(139,92,246,.15);
+    color:#b9a5ff;
+    font-size:12px;
+    margin-bottom:18px;
+}
+
+.details-content p{
+    color:#a1a1ad;
+    line-height:1.8;
+    font-size:15px;
+    max-width:750px;
+}
+
+.details-close{
+    position:absolute;
+    top:25px;
+    right:25px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(0,0,0,.55);
+    color:white;
+    cursor:pointer;
+    font-size:20px;
+    z-index:5;
+    transition:.25s;
+}
+
+.details-close:hover{
+    background:var(--purple);
+    transform:rotate(90deg);
+}
+
+/* ================= FOOTER ================= */
 
 footer{
     border-top:1px solid var(--border);
@@ -297,10 +451,36 @@ footer{
     font-size:12px;
 }
 
+/* ================= ANIMATIONS ================= */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= MOBILE ================= */
+
 @media(max-width:700px){
 
     header{
-        padding:18px 20px;
+        padding:16px 20px;
     }
 
     nav{
@@ -308,7 +488,6 @@ footer{
     }
 
     .hero,
-    .stats,
     .controls,
     .section{
         padding-left:20px;
@@ -339,6 +518,22 @@ footer{
     .card-content{
         padding:12px;
     }
+
+    .search-box.open{
+        width:calc(100vw - 40px);
+    }
+
+    .details-image{
+        height:230px;
+    }
+
+    .details-content{
+        padding:20px;
+    }
+
+    .details-content h2{
+        font-size:27px;
+    }
 }
 </style>
 </head>
@@ -346,18 +541,52 @@ footer{
 <body>
 
 <header>
-    <div class="logo">My <span>Games</span></div>
 
-    <nav>
-        <a href="#">Home</a>
-        <a href="#games">Games</a>
-    </nav>
+    <div class="logo">
+        My <span>Games</span>
+    </div>
+
+    <div class="header-right">
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#games">Games</a>
+        </nav>
+
+        <div class="search-wrapper">
+
+            <button class="search-icon" onclick="toggleSearch()">
+                🔍
+            </button>
+
+            <div class="search-box" id="searchBox">
+
+                <input
+                    id="search"
+                    class="search"
+                    type="text"
+                    placeholder="Search your games..."
+                    oninput="filterGames()"
+                >
+
+                <button class="close-search" onclick="closeSearch()">
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </header>
 
 
 <section class="hero">
 
-    <div class="hero-label">PERSONAL PC COLLECTION</div>
+    <div class="hero-label">
+        PERSONAL PC COLLECTION
+    </div>
 
     <h1>
         MY <span class="gradient">GAMES</span>
@@ -371,42 +600,40 @@ footer{
 </section>
 
 
-<div class="stats">
-    <div class="stat">
-        <strong id="gameCount">0</strong>
-        <span>Games</span>
-    </div>
-
-    <div class="stat">
-        <strong>PC</strong>
-        <span>Platform</span>
-    </div>
-
-    <div class="stat">
-        <strong>∞</strong>
-        <span>Collection</span>
-    </div>
-</div>
-
-
 <section class="controls">
-
-    <input
-        id="search"
-        class="search"
-        type="text"
-        placeholder="Search your games..."
-        onkeyup="filterGames()"
-    >
 
     <div class="categories">
 
-        <button class="category active" onclick="filterCategory('all',this)">All</button>
-        <button class="category" onclick="filterCategory('action',this)">Action</button>
-        <button class="category" onclick="filterCategory('racing',this)">Racing</button>
-        <button class="category" onclick="filterCategory('fighting',this)">Fighting</button>
-        <button class="category" onclick="filterCategory('horror',this)">Horror</button>
-        <button class="category" onclick="filterCategory('shooter',this)">Shooter</button>
+        <button class="category active"
+        onclick="filterCategory('all',this)">
+            All
+        </button>
+
+        <button class="category"
+        onclick="filterCategory('action',this)">
+            Action
+        </button>
+
+        <button class="category"
+        onclick="filterCategory('racing',this)">
+            Racing
+        </button>
+
+        <button class="category"
+        onclick="filterCategory('fighting',this)">
+            Fighting
+        </button>
+
+        <button class="category"
+        onclick="filterCategory('horror',this)">
+            Horror
+        </button>
+
+        <button class="category"
+        onclick="filterCategory('shooter',this)">
+            Shooter
+        </button>
+
     </div>
 
 </section>
@@ -419,10 +646,13 @@ footer{
         <span>My favorites</span>
     </div>
 
+
     <div class="featured">
 
-        <div class="feature"
-        style="background-image:url('https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg')">
+        <div
+            class="feature"
+            onclick="openGame('GTA V')"
+            style="background-image:url('https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg')">
 
             <div class="feature-content">
                 <small>OPEN WORLD</small>
@@ -431,8 +661,11 @@ footer{
 
         </div>
 
-        <div class="feature"
-        style="background-image:url('https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg')">
+
+        <div
+            class="feature"
+            onclick="openGame('Red Dead Redemption 2')"
+            style="background-image:url('https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg')">
 
             <div class="feature-content">
                 <small>ADVENTURE</small>
@@ -453,235 +686,320 @@ footer{
     <div class="games-grid" id="gameList">
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('GTA V')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg">
+
             <div class="card-content">
                 <h3>GTA V</h3>
-                <div class="details"><span>Action</span><span>~110 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Open World</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Red Dead Redemption 2')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg">
+
             <div class="card-content">
                 <h3>Red Dead Redemption 2</h3>
-                <div class="details"><span>Adventure</span><span>~150 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Adventure • Open World</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Red Dead Redemption')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/2668510/header.jpg">
+
             <div class="card-content">
                 <h3>Red Dead Redemption</h3>
-                <div class="details"><span>Action</span><span>~10 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Adventure</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Watch Dogs 2')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/447040/header.jpg">
+
             <div class="card-content">
                 <h3>Watch Dogs 2</h3>
-                <div class="details"><span>Action</span><span>~27 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Open World</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Sleeping Dogs')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/307690/header.jpg">
+
             <div class="card-content">
                 <h3>Sleeping Dogs</h3>
-                <div class="details"><span>Action</span><span>~20 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Open World</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Assassin’s Creed Rogue')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/311560/header.jpg">
+
             <div class="card-content">
                 <h3>Assassin's Creed Rogue</h3>
-                <div class="details"><span>Action</span><span>~12 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Adventure</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="fighting">
+        <div class="card"
+        data-category="fighting"
+        onclick="openGame('Tekken 7')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/389730/header.jpg">
+
             <div class="card-content">
                 <h3>Tekken 7</h3>
-                <div class="details"><span>Fighting</span><span>~60 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Fighting</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="fighting">
+        <div class="card"
+        data-category="fighting"
+        onclick="openGame('Tekken 8')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/1778820/header.jpg">
+
             <div class="card-content">
                 <h3>Tekken 8</h3>
-                <div class="details"><span>Fighting</span><span>~100 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Fighting</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="horror">
+        <div class="card"
+        data-category="horror"
+        onclick="openGame('Outlast')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/238320/header.jpg">
+
             <div class="card-content">
                 <h3>Outlast</h3>
-                <div class="details"><span>Horror</span><span>~5 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Horror • Survival</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="racing">
+        <div class="card"
+        data-category="racing"
+        onclick="openGame('NFS Heat')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/1222680/header.jpg">
+
             <div class="card-content">
                 <h3>NFS Heat</h3>
-                <div class="details"><span>Racing</span><span>~50 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Racing</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="racing">
+        <div class="card"
+        data-category="racing"
+        onclick="openGame('NFS Payback')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/1262580/header.jpg">
+
             <div class="card-content">
                 <h3>NFS Payback</h3>
-                <div class="details"><span>Racing</span><span>~30 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Racing</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Sekiro: Shadows Die Twice')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/814380/header.jpg">
+
             <div class="card-content">
                 <h3>Sekiro: Shadows Die Twice</h3>
-                <div class="details"><span>Action</span><span>~25 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Adventure</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="shooter">
+        <div class="card"
+        data-category="shooter"
+        onclick="openGame('Counter-Strike 2')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg">
+
             <div class="card-content">
                 <h3>Counter-Strike 2</h3>
-                <div class="details"><span>Shooter</span><span>~35 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Shooter • Competitive</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="shooter">
+        <div class="card"
+        data-category="shooter"
+        onclick="openGame('VALORANT')">
+
             <img class="cover"
             src="https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=900&q=85">
+
             <div class="card-content">
                 <h3>VALORANT</h3>
-                <div class="details"><span>Shooter</span><span>~30 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Shooter • Competitive</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Far Cry 4')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/298110/header.jpg">
+
             <div class="card-content">
                 <h3>Far Cry 4</h3>
-                <div class="details"><span>Action</span><span>~30 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Shooter</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Far Cry 5')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/939960/header.jpg">
+
             <div class="card-content">
                 <h3>Far Cry 5</h3>
-                <div class="details"><span>Action</span><span>~40 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Shooter</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Far Cry 6')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/236939/header.jpg">
+
             <div class="card-content">
                 <h3>Far Cry 6</h3>
-                <div class="details"><span>Action</span><span>~60 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Shooter</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Far Cry 3')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/220240/header.jpg">
+
             <div class="card-content">
                 <h3>Far Cry 3</h3>
-                <div class="details"><span>Action</span><span>~15 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Shooter</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="action">
+        <div class="card"
+        data-category="action"
+        onclick="openGame('Far Cry Primal')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/371660/header.jpg">
+
             <div class="card-content">
                 <h3>Far Cry Primal</h3>
-                <div class="details"><span>Action</span><span>~20 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Action • Adventure</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="racing">
+        <div class="card"
+        data-category="racing"
+        onclick="openGame('F1 23')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/2108330/header.jpg">
+
             <div class="card-content">
                 <h3>F1 23</h3>
-                <div class="details"><span>Racing</span><span>~80 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Racing • Sports</div>
             </div>
+
         </div>
 
 
-        <div class="card" data-category="racing">
+        <div class="card"
+        data-category="racing"
+        onclick="openGame('F1 24')">
+
             <img class="cover"
             src="https://cdn.cloudflare.steamstatic.com/steam/apps/2488620/header.jpg">
+
             <div class="card-content">
                 <h3>F1 24</h3>
-                <div class="details"><span>Racing</span><span>~100 GB</span></div>
-                <span class="badge">PC</span>
+                <div class="game-genre">Racing • Sports</div>
             </div>
+
         </div>
+
 
     </div>
 
@@ -693,42 +1011,270 @@ footer{
 </footer>
 
 
+<!-- GAME DETAILS -->
+
+<div class="game-details" id="gameDetails">
+
+    <div class="details-box">
+
+        <button class="details-close" onclick="closeGame()">
+            ×
+        </button>
+
+        <img
+            id="detailsImage"
+            class="details-image"
+            src=""
+            alt="Game">
+
+        <div class="details-content">
+
+            <h2 id="detailsTitle"></h2>
+
+            <span id="detailsTag" class="details-tag"></span>
+
+            <p id="detailsDescription"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
 <script>
 
-let currentCategory="all";
+let currentCategory = "all";
 
-const cards=document.querySelectorAll(".card");
+const cards = document.querySelectorAll(".card");
 
-document.getElementById("gameCount").textContent=cards.length;
 
+/* ================= GAME DATA ================= */
+
+const games = {
+
+    "GTA V":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg",
+        genre:"Action • Open World",
+        description:
+        "Grand Theft Auto V is an open-world action game set in Los Santos. Explore the city, complete missions, drive vehicles and experience the story of three different characters."
+    },
+
+    "Red Dead Redemption 2":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg",
+        genre:"Adventure • Open World",
+        description:
+        "Red Dead Redemption 2 is an open-world western adventure following Arthur Morgan and the Van der Linde gang as they try to survive in a changing world."
+    },
+
+    "Red Dead Redemption":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/2668510/header.jpg",
+        genre:"Action • Adventure",
+        description:
+        "Red Dead Redemption is a western action-adventure game following John Marston on his journey across the American frontier."
+    },
+
+    "Watch Dogs 2":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/447040/header.jpg",
+        genre:"Action • Open World",
+        description:
+        "Watch Dogs 2 is an open-world action game where Marcus Holloway joins DedSec and uses hacking, technology and creativity to take on powerful organizations."
+    },
+
+    "Sleeping Dogs":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/307690/header.jpg",
+        genre:"Action • Open World",
+        description:
+        "Sleeping Dogs is an open-world action game set in Hong Kong. Play as an undercover police officer working his way into a dangerous criminal organization."
+    },
+
+    "Assassin’s Creed Rogue":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/311560/header.jpg",
+        genre:"Action • Adventure",
+        description:
+        "Assassin's Creed Rogue follows Shay Cormac, an Assassin who turns against the Brotherhood and becomes a Templar."
+    },
+
+    "Tekken 7":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/389730/header.jpg",
+        genre:"Fighting",
+        description:
+        "Tekken 7 is a fighting game featuring a large roster of fighters, competitive battles and the conclusion of the Mishima family storyline."
+    },
+
+    "Tekken 8":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/1778820/header.jpg",
+        genre:"Fighting",
+        description:
+        "Tekken 8 is a modern fighting game featuring intense battles, cinematic story sequences and a large roster of fighters."
+    },
+
+    "Outlast":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/238320/header.jpg",
+        genre:"Horror • Survival",
+        description:
+        "Outlast is a survival horror game where you investigate a mysterious facility while trying to survive dangerous encounters."
+    },
+
+    "NFS Heat":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/1222680/header.jpg",
+        genre:"Racing",
+        description:
+        "Need for Speed Heat is a street-racing game featuring high-speed races, car customization and an open-world environment."
+    },
+
+    "NFS Payback":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/1262580/header.jpg",
+        genre:"Racing",
+        description:
+        "Need for Speed Payback is an action-focused racing game with fast cars, customization and a story-driven campaign."
+    },
+
+    "Sekiro: Shadows Die Twice":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/814380/header.jpg",
+        genre:"Action • Adventure",
+        description:
+        "Sekiro: Shadows Die Twice is an action-adventure game focused on precise sword combat, exploration and challenging encounters."
+    },
+
+    "Counter-Strike 2":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg",
+        genre:"Shooter • Competitive",
+        description:
+        "Counter-Strike 2 is a competitive tactical shooter featuring team-based matches and objective-focused gameplay."
+    },
+
+    "VALORANT":{
+        image:"https://images.unsplash.com/photo-1542751110-97427bbecf20?auto=format&fit=crop&w=900&q=85",
+        genre:"Shooter • Competitive",
+        description:
+        "VALORANT is a competitive tactical shooter combining precise gunplay with unique agent abilities."
+    },
+
+    "Far Cry 4":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/298110/header.jpg",
+        genre:"Action • Shooter",
+        description:
+        "Far Cry 4 is an open-world shooter set in the fictional Himalayan region of Kyrat."
+    },
+
+    "Far Cry 5":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/939960/header.jpg",
+        genre:"Action • Shooter",
+        description:
+        "Far Cry 5 is an open-world shooter set in Hope County, Montana, where players fight against a dangerous cult."
+    },
+
+    "Far Cry 6":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/236939/header.jpg",
+        genre:"Action • Shooter",
+        description:
+        "Far Cry 6 is an open-world action shooter set on the fictional Caribbean island of Yara."
+    },
+
+    "Far Cry 3":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/220240/header.jpg",
+        genre:"Action • Shooter",
+        description:
+        "Far Cry 3 is an open-world shooter set on a tropical island filled with enemies, wildlife and dangerous environments."
+    },
+
+    "Far Cry Primal":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/371660/header.jpg",
+        genre:"Action • Adventure",
+        description:
+        "Far Cry Primal takes the series into the Stone Age, where players explore a prehistoric world and survive using primitive weapons."
+    },
+
+    "F1 23":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/2108330/header.jpg",
+        genre:"Racing • Sports",
+        description:
+        "F1 23 is a Formula 1 racing game featuring official circuits, teams and drivers alongside competitive racing modes."
+    },
+
+    "F1 24":{
+        image:"https://cdn.cloudflare.steamstatic.com/steam/apps/2488620/header.jpg",
+        genre:"Racing • Sports",
+        description:
+        "F1 24 is a Formula 1 racing game featuring modern cars, official circuits and multiple racing modes."
+    }
+
+};
+
+
+/* ================= SEARCH ================= */
+
+function toggleSearch(){
+
+    const box = document.getElementById("searchBox");
+
+    box.classList.toggle("open");
+
+    if(box.classList.contains("open")){
+
+        setTimeout(()=>{
+            document.getElementById("search").focus();
+        },200);
+
+    }
+
+}
+
+
+function closeSearch(){
+
+    const box = document.getElementById("searchBox");
+
+    box.classList.remove("open");
+
+    document.getElementById("search").value="";
+
+    filterGames();
+
+}
+
+
+/* ================= FILTER ================= */
 
 function filterGames(){
 
-    const search=document
+    const search =
+        document
         .getElementById("search")
         .value
         .toLowerCase();
 
     cards.forEach(card=>{
 
-        const name=card
+        const name =
+            card
             .querySelector("h3")
             .textContent
             .toLowerCase();
 
-        const category=card.dataset.category;
+        const category =
+            card.dataset.category;
 
-        const searchMatch=name.includes(search);
+        const searchMatch =
+            name.includes(search);
 
-        const categoryMatch=
-            currentCategory==="all" ||
-            category===currentCategory;
+        const categoryMatch =
+            currentCategory === "all" ||
+            category === currentCategory;
 
-        card.style.display=
-            searchMatch && categoryMatch
-            ? ""
-            : "none";
+        if(searchMatch && categoryMatch){
+
+            card.style.display="";
+
+        }else{
+
+            card.style.display="none";
+
+        }
+
     });
+
 }
 
 
@@ -737,15 +1283,86 @@ function filterCategory(category,button){
     currentCategory=category;
 
     document
-        .querySelectorAll(".category")
-        .forEach(btn=>btn.classList.remove("active"));
+    .querySelectorAll(".category")
+    .forEach(btn=>{
+        btn.classList.remove("active");
+    });
 
     button.classList.add("active");
 
     filterGames();
+
 }
+
+
+/* ================= GAME DETAILS ================= */
+
+function openGame(gameName){
+
+    const game = games[gameName];
+
+    if(!game) return;
+
+    document.getElementById("detailsImage").src =
+        game.image;
+
+    document.getElementById("detailsTitle").textContent =
+        gameName;
+
+    document.getElementById("detailsTag").textContent =
+        game.genre;
+
+    document.getElementById("detailsDescription").textContent =
+        game.description;
+
+    document
+    .getElementById("gameDetails")
+    .classList.add("show");
+
+    document.body.style.overflow="hidden";
+
+}
+
+
+function closeGame(){
+
+    document
+    .getElementById("gameDetails")
+    .classList.remove("show");
+
+    document.body.style.overflow="";
+
+}
+
+
+/* CLICK OUTSIDE TO CLOSE */
+
+document
+.getElementById("gameDetails")
+.addEventListener("click",function(e){
+
+    if(e.target === this){
+        closeGame();
+    }
+
+});
+
+
+/* ESCAPE KEY */
+
+document.addEventListener("keydown",function(e){
+
+    if(e.key === "Escape"){
+
+        closeGame();
+        closeSearch();
+
+    }
+
+});
 
 </script>
 
 </body>
 </html>
+```
