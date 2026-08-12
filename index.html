@@ -1,1 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>My Games</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #090a0f;
+    color: white;
+}
+
+header {
+    padding: 25px 7%;
+    border-bottom: 1px solid #242631;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.logo span {
+    color: #7c5cff;
+}
+
+nav a {
+    color: #aaa;
+    text-decoration: none;
+    margin-left: 25px;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.hero {
+    padding: 55px 7% 35px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 70px);
+    margin-bottom: 12px;
+}
+
+.hero p {
+    color: #9b9da8;
+    font-size: 17px;
+}
+
+.search-area {
+    padding: 0 7% 35px;
+}
+
+.search {
+    width: 100%;
+    max-width: 650px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    border: 1px solid #292c38;
+    background: #12141b;
+    color: white;
+    font-size: 16px;
+    outline: none;
+}
+
+.search:focus {
+    border-color: #7c5cff;
+}
+
+.games {
+    padding: 10px 7% 60px;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+}
+
+.card {
+    background: #12141b;
+    border: 1px solid #252833;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #7c5cff;
+}
+
+.card-image {
+    height: 270px;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    padding: 17px;
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    color: #9b9da8;
+    font-size: 14px;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 6px 10px;
+    border-radius: 7px;
+    background: #1e1a35;
+    color: #a993ff;
+    font-size: 13px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    border-top: 1px solid #242631;
+    color: #777;
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 20px;
+    }
+
+    nav {
+        display: none;
+    }
+
+    .hero,
+    .search-area,
+    .games {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .hero {
+        padding-top: 40px;
+    }
+
+    .card-image {
+        height: 240px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">My <span>Games</span></div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#games">Games</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h1>My Games</h1>
+    <p>My personal collection of PC games.</p>
+</section>
+
+<section class="search-area">
+    <input
+        type="text"
+        id="search"
+        class="search"
+        placeholder="Search games..."
+        onkeyup="searchGames()"
+    >
+</section>
+
+<section class="games" id="games">
+
+    <div class="games-grid" id="gameList">
+
+        <div class="card">
+            <img
+                class="card-image"
+                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80"
+                alt="Gaming"
+            >
+
+            <div class="card-content">
+                <h2>GTA V</h2>
+
+                <div class="info">
+                    <span>Action</span>
+                    <span>~110 GB</span>
+                </div>
+
+                <span class="badge">PC</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <img
+                class="card-image"
+                src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80"
+                alt="Gaming"
+            >
+
+            <div class="card-content">
+                <h2>Far Cry 4</h2>
+
+                <div class="info">
+                    <span>Action</span>
+                    <span>~30 GB</span>
+                </div>
+
+                <span class="badge">PC</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <img
+                class="card-image"
+                src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=800&q=80"
+                alt="Gaming"
+            >
+
+            <div class="card-content">
+                <h2>Assassin's Creed</h2>
+
+                <div class="info">
+                    <span>Adventure</span>
+                    <span>~40 GB</span>
+                </div>
+
+                <span class="badge">PC</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <img
+                class="card-image"
+                src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80"
+                alt="Gaming"
+            >
+
+            <div class="card-content">
+                <h2>Resident Evil</h2>
+
+                <div class="info">
+                    <span>Horror</span>
+                    <span>~25 GB</span>
+                </div>
+
+                <span class="badge">PC</span>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    My Games • Personal Gaming Collection
+</footer>
+
+<script>
+function searchGames() {
+    const input = document.getElementById("search").value.toLowerCase();
+    const cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        const name = card.querySelector("h2").textContent.toLowerCase();
+
+        if (name.includes(input)) {
+            card.style.display = "";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+</script>
+
+</body>
+</html>
